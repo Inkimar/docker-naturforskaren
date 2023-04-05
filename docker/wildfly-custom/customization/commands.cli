@@ -1,0 +1,28 @@
+batch
+
+deploy customization/mysql-connector-java-5.1.47.jar
+
+#/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+#module add --name=com.mysql.driver --dependencies=javax.api,javax.transaction.api --resources=/opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/mysql-connector-java-5.1.47.jar
+
+
+#    --connection-url=jdbc:mysql://localhost:3306/taxonpages_v2?useUnicode=true&amp;characterEncoding=UTF-8 \
+
+data-source add  \
+     --name=NaturDS \
+    --jndi-name=java:/NaturDS \
+    --driver-name=mysql-connector-java-5.1.47.jar \
+    --connection-url=jdbc:mysql://nfdb:3306/taxonpages_v2?autoReconnect=true&useSSL=false \
+    --user-name=mediaserver \
+    --password=mediaserver \
+    --check-valid-connection-sql="SELECT 1" \
+    --background-validation=true \
+    --background-validation-millis=60000 \
+    --flush-strategy=IdleConnections \
+    --min-pool-size=10 \
+    --max-pool-size=50 \
+    --pool-prefill=false \
+    --use-ccm=true 
+
+run-batch
+
