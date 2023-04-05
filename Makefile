@@ -1,41 +1,34 @@
 deploy:
-	@docker-compose -f docker-compose.all.yml up -d nfdb
-	@docker-compose -f docker-compose.all.yml up -d naturalist
+	@docker-compose -f docker-compose.yml up -d nfdb
+	@docker-compose -f docker-compose.yml up -d naturalist
 	docker exec -it naturalist bash
-	#deploy the naturalist.war-file 
-
+	
 up-database:
-	@docker-compose -f docker-compose.all.yml up -d nfdb
+	@docker-compose -f docker-compose.yml up -d nfdb
 
 up-naturalist:
-	@docker-compose -f docker-compose.all.yml up -d naturalist
+	@docker-compose -f docker-compose.yml up -d naturalist
 
-ps-all : 
-	docker-compose -f docker-compose.all.yml ps
+ps: 
+	docker-compose -f docker-compose.yml ps
 
 logs-all:
-	docker-compose -f docker-compose.all.yml logs -f	
+	docker-compose -f docker-compose.yml logs -f	
 
 logs-naturalist:
-	docker-compose -f docker-compose.all.yml logs -f naturalist
+	docker-compose -f docker-compose.yml logs -f naturalist
 
 logs-database:
-	docker-compose -f docker-compose.all.yml logs -f nfdb 
+	docker-compose -f docker-compose.yml logs -f nfdb 
 
 down-all : 
-	docker-compose -f docker-compose.all.yml down
+	docker-compose -f docker-compose.yml down
 
-
-# deploy jar
 login-naturalist:
 	docker exec -it naturalist bash
 
 copy-war-naturalist:
 	docker cp naturalist.war naturalist:/tmp
-
-startup:
-	xdg-open http://naturforskaren.dina-web.net/naturalist/
-
 
 
 naturalist-down:
