@@ -12,3 +12,5 @@ cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/nat
 /usr/bin/docker cp /home/s-research/repos/naturforskaren/artifact/naturalist.war naturalist:/tmp
 # deploy the artifact to jboss/wildfly
 /usr/bin/docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war --force'"
+
+rm /home/s-research/repos/naturforskaren/artifact/naturalist.war
