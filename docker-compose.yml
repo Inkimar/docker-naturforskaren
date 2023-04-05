@@ -2,11 +2,28 @@ version: '3.7'
 
 services:
 
+  nfdb:
+    image: mysql:5.7.30
+    container_name: nfdb
+    environment:
+     - VIRTUAL_HOST=db.naturforskaren.se #needs runnning proxy
+     - TZ=Europe/Stockholm
+     - MYSQL_ROOT_PASSWORD=supersecret
+     - MYSQL_DATABASE=taxonpages_v2
+     - MYSQL_USER=mediaserver
+     - MYSQL_PASSWORD=mediaserver
+    volumes:
+     -  my-datavolume:/var/lib/mysql:z 
+     -  my-datashared:/shr:z
+      # - ./db/mysql_media-datadir:/var/lib/mysql:z
+      # - ./db/mysql_media-shr:/shr:z
+     - ./db/mysql_media-autoload:/docker-entrypoint-initdb.d:ro
+
   naturalist:
     image: inkimar/naturalist:0.3.2
     container_name: naturalist
     environment:
-     - VIRTUAL_HOST=naturforskaren.se
+     - VIRTUAL_HOST=naturforskaren.org
        #- VIRTUAL_PORT=8080
      - JAVA_OPTS=  -server -XX:+UseCompressedOops  -server -XX:+UseCompressedOops -Xms1024m -Xmx12g -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true
     volumes:
@@ -17,22 +34,10 @@ services:
     external_links:
      - nfdatabase:nfdatabase
 
-  nfdb:
-    image: mysql:5.7.30 
-    container_name: nfdb
-    ports:
-     - "3306:3306"
-    environment:
-     - VIRTUAL_HOST=db.naturforskaren.se #needs runnning proxy
-     - TZ=Europe/Stockholm
-     - MYSQL_ROOT_PASSWORD=supersecret
-     - MYSQL_DATABASE=taxonpages_v2
-     - MYSQL_USER=mediaserver
-     - MYSQL_PASSWORD=mediaserver
-    volumes:
-     - ./db/mysql_media-datadir:/var/lib/mysql:z
-     - ./db/mysql_media-shr:/shr:z
-     - ./db/mysql_media-autoload:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  my-datavolume:
+  my-datashared:
 
 networks:
   default:
