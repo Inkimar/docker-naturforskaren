@@ -34,9 +34,6 @@ copy-war-naturalist:
 naturalist-down:
 	docker-compose -f docker-compose.all.yml rm -f -s -v naturalist
 
-naturalist-copy:
-	docker cp /home/dina/repos/artifact/naturalist.war naturalist:/tmp
-
 naturalist-ls:
 	docker exec  naturalist sh -c "ls /tmp"
 
@@ -47,5 +44,5 @@ naturalist-undeploy:
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='undeploy naturalist.war'"
 
 naturalist-deploy:
-	docker cp /home/dina/repos/artifact/naturalist.war naturalist:/tmp
+	docker cp /home/s-research/repos/naturforskaren/artifact/naturalist.war naturalist:/tmp
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war'"
