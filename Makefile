@@ -2,7 +2,10 @@ deploy:
 	@docker-compose -f docker-compose.yml up -d nfdb
 	@docker-compose -f docker-compose.yml up -d naturalist
 	docker exec -it naturalist bash
-	
+
+up:
+	@docker-compose -f docker-compose.yml up -d
+
 up-database:
 	@docker-compose -f docker-compose.yml up -d nfdb
 
@@ -21,15 +24,11 @@ logs-naturalist:
 logs-database:
 	docker-compose -f docker-compose.yml logs -f nfdb 
 
-down-all : 
+down: 
 	docker-compose -f docker-compose.yml down
-
-login-naturalist:
-	docker exec -it naturalist bash
 
 copy-war-naturalist:
 	docker cp naturalist.war naturalist:/tmp
-
 
 naturalist-down:
 	docker-compose -f docker-compose.all.yml rm -f -s -v naturalist
