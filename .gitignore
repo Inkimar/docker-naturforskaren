@@ -1,4 +1,5 @@
 # Log file
+srv/log/
 *.log
 
 # Package Files #
