@@ -27,14 +27,8 @@ logs-database:
 down: 
 	docker-compose -f docker-compose.yml down
 
-copy-war-naturalist:
-	docker cp naturalist.war naturalist:/tmp
-
 naturalist-down:
 	docker-compose -f docker-compose.all.yml rm -f -s -v naturalist
-
-naturalist-ls:
-	docker exec  naturalist sh -c "ls /tmp"
 
 naturalist-check-deployments:
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='ls deployment'"
@@ -43,5 +37,5 @@ naturalist-undeploy:
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='undeploy naturalist.war'"
 
 naturalist-deploy:
-	docker cp /home/s-research/repos/naturforskaren/artifact/naturalist.war naturalist:/tmp
+	docker cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/naturalist.war naturalist:/tmp
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war'"
