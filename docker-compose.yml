@@ -1,5 +1,9 @@
 version: '3.7'
 
+networks:
+  naturalist:
+    external: true
+
 services:
 
   nfdb:
@@ -18,6 +22,8 @@ services:
       # - ./db/mysql_media-datadir:/var/lib/mysql:z
       # - ./db/mysql_media-shr:/shr:z
      - ./db/mysql_media-autoload:/docker-entrypoint-initdb.d:ro
+    networks:
+     - naturalist
 
   naturalist:
     image: inkimar/naturalist:0.3.2
@@ -33,13 +39,15 @@ services:
       - /opt/data/nf/maps:/opt/data/nf/maps/
     external_links:
      - nfdatabase:nfdatabase
+    networks:
+      - naturalist
 
 
 volumes:
   my-datavolume:
   my-datashared:
 
-networks:
-  default:
-    external:
-       name: proxy_default
+    #networks:
+    #default:
+    #external:
+    #  name: proxy_default
