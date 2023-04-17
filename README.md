@@ -1,6 +1,8 @@
 # docker-naturforskaren
 
-
+## Manual Startup
+1. ./setup_docker_network.sh -> creates the network 'naturalist
+2. verify -> cmd ``` docker network ls ```
 
 
 ## Wildfly - manual adjustment of the context-root
