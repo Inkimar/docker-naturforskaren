@@ -1,11 +1,14 @@
 # docker-naturforskaren
 
 ## Manual Startup
+
+### setting up the docker network 'naturalist
 1. ./setup_docker_network.sh -> creates the network 'naturalist
 2. verify -> cmd ``` docker network ls ```
 
 
-## Wildfly - manual adjustment of the context-root
+###  Wildfly - manual adjustment of the context-root
+- if naturforskaren is running on 'http://naturforskaren.se/naturalist' then you need to run the blow steps
 
 Step 1)
 - log in to the docker-container with the name 'naturalist'
