@@ -19,8 +19,6 @@ services:
     volumes:
      -  my-datavolume:/var/lib/mysql:z 
      -  my-datashared:/shr:z
-      # - ./db/mysql_media-datadir:/var/lib/mysql:z
-      # - ./db/mysql_media-shr:/shr:z
      - ./db/mysql_media-autoload:/docker-entrypoint-initdb.d:ro
     networks:
      - naturalist
@@ -29,8 +27,8 @@ services:
     image: inkimar/naturalist:0.3.2
     container_name: naturalist
     environment:
-     - VIRTUAL_HOST=naturforskaren.org
-       #- VIRTUAL_PORT=8080
+     - VIRTUAL_HOST=naturforskaren.se
+     # - VIRTUAL_PORT=8080
      - JAVA_OPTS=  -server -XX:+UseCompressedOops  -server -XX:+UseCompressedOops -Xms1024m -Xmx12g -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true
     volumes:
       - ./srv/log:/opt/jboss/wildfly/standalone/log      
@@ -46,8 +44,3 @@ services:
 volumes:
   my-datavolume:
   my-datashared:
-
-    #networks:
-    #default:
-    #external:
-    #  name: proxy_default
