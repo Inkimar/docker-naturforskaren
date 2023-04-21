@@ -1,5 +1,15 @@
 # docker-naturforskaren
 
+## the database 'taxonpages_v2'
+
+### without users
+- is on NRM:s [owncloud](https://owncloud.nrm.se/index.php/s/NhprXwiuJ4kxr5S/download)
+-  in the directory  `` db/mysql_media-autoload``` run this cmd  ```  wget -O taxonpages_v2.sql https://owncloud.nrm.se/index.php/s/NhprXwiuJ4kxr5S/download ```
+ 
+
+### with users
+- in a private NRM-directory
+
 ## Manual Startup
 
 ### setting up the docker network 'naturalist
