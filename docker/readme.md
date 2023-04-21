@@ -1,7 +1,7 @@
 # The database, user and password
 Set in the [commands.cli](https://github.com/naturforskaren-se/docker-naturforskaren/blob/main/docker/wildfly-custom/customization/commands.cli)
 
-These values are set when you build the Dockerfile see[Makefile](https://github.com/naturforskaren-se/docker-naturforskaren/blob/main/docker/Makefile)
+These values are set when you **build** the Dockerfile see [Makefile](https://github.com/naturforskaren-se/docker-naturforskaren/blob/main/docker/Makefile)
 ************
 1. user-name
 2. password
