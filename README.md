@@ -1,11 +1,24 @@
 # docker-naturforskaren
 
+## the database 'taxonpages_v2'
+
+### without users
+- is on NRM:s [owncloud](https://owncloud.nrm.se/index.php/s/NhprXwiuJ4kxr5S/download)
+-  in the directory  `` db/mysql_media-autoload``` run this cmd  ```  wget -O taxonpages_v2.sql https://owncloud.nrm.se/index.php/s/NhprXwiuJ4kxr5S/download ```
+ 
+
+### with users
+- in a private NRM-directory
+
 ## Manual Startup
+
+### setting up the docker network 'naturalist
 1. ./setup_docker_network.sh -> creates the network 'naturalist
 2. verify -> cmd ``` docker network ls ```
 
 
-## Wildfly - manual adjustment of the context-root
+###  Wildfly - manual adjustment of the context-root
+- if naturforskaren is running on 'http://naturforskaren.se/naturalist' then you need to run the blow steps
 
 Step 1)
 - log in to the docker-container with the name 'naturalist'
