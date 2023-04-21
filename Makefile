@@ -1,5 +1,5 @@
 up:
-	@docker-compose -f up -d
+	@docker-compose  up -d
 
 up-database:
 	@docker-compose up -d nfdb
