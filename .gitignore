@@ -11,3 +11,5 @@ srv/log/
 
 db/mysql_media-datadir/
 db/mysql_media-shr/
+
+db/mysql_media-autoload/*
