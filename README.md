@@ -17,8 +17,8 @@
 2. verify -> cmd ``` docker network ls ```
 
 ### Wildfly (a) - manual adjustment of the context-root
-1. docker exec sh -c "exec bin/jboss-cli.sh --connect --command='/subsystem=undertow/server=default-server/host=default-host:write-attribute(name=default-web-module,value=naturalist.war)'" 
-2. docker exec sh -c "exec bin/jboss-cli.sh --connect --command=':reload'"
+1. docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command='/subsystem=undertow/server=default-server/host=default-host:write-attribute(name=default-web-module,value=naturalist.war)'" 
+2. docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command=':reload'"
 
 ###  Wildfly (b) - manual adjustment of the context-root
 - if naturforskaren is running on 'http://naturforskaren.se/naturalist' then you need to run the blow steps
