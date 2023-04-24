@@ -34,3 +34,5 @@ nf-undeploy:
 naturalist-deploy:
 	docker cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/naturalist.war naturalist:/tmp
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war'"
+	docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command='/subsystem=undertow/server=default-server/host=default-host:write-attribute(name=default-web-module,value=naturalist.war)'"
+	docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command=':reload'"
