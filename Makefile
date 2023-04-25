@@ -28,11 +28,13 @@ naturalist-down:
 check-deployments:
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='ls deployment'"
 
-nf-undeploy:
+naturalist-undeploy:
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='undeploy naturalist.war'"
 
 naturalist-deploy:
-	docker cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/naturalist.war naturalist:/tmp
+	docker cp ./artifact/naturalist.war naturalist:/tmp
 	docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war'"
+
+naturalist-contextRoot:
 	docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command='/subsystem=undertow/server=default-server/host=default-host:write-attribute(name=default-web-module,value=naturalist.war)'"
 	docker exec naturalist sh -c "exec bin/jboss-cli.sh --connect --command=':reload'"
