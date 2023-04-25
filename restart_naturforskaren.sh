@@ -1,18 +1,18 @@
 #!/bin/bash
-/usr/local/bin/docker-compose -f docker-compose.yml up -d nfdb
+docker-compose up -d nfdb
 sleep 15s
-/usr/local/bin/docker-compose -f docker-compose.yml rm -f -s -v naturalist
+docker-compose rm -f -s -v naturalist
 sleep 5s
-/usr/local/bin/docker-compose -f docker-compose.yml up -d naturalist
+docker-compose up -d naturalist
 sleep 15s
 
 # cp from wildfly-dir if not available in ...
-cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/naturalist.war /home/s-research/repos/naturforskaren/artifact/naturalist.war
+#cp /home/s-research/repos/naturforskaren/docker/wildfly-custom/customization/naturalist.war /home/s-research/repos/naturforskaren/artifact/naturalist.war
 
 
 # copy the artifact to the docker-container
-docker cp /home/s-research/repos/naturforskaren/artifact/naturalist.war naturalist:/tmp
+docker cp artifact/naturalist.war naturalist:/tmp
+
 # deploy the artifact to jboss/wildfly
 docker exec  naturalist sh -c "exec bin/jboss-cli.sh --connect --command='deploy /tmp/naturalist.war --force'"
 
-#rm /home/s-research/repos/naturforskaren/artifact/naturalist.war
