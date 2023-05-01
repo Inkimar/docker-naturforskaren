@@ -24,11 +24,10 @@ services:
      - naturalist
 
   naturalist:
-    image: inkimar/naturalist:0.3.2
+    image: inkimar/naturalist:0.3.3
     container_name: naturalist
     environment:
      - VIRTUAL_HOST=naturforskaren.se
-     # - VIRTUAL_PORT=8080
      - JAVA_OPTS=  -server -XX:+UseCompressedOops  -server -XX:+UseCompressedOops -Xms1024m -Xmx12g -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true
     volumes:
       - ./srv/log:/opt/jboss/wildfly/standalone/log      
